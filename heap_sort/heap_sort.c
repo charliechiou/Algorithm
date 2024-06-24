@@ -5,10 +5,31 @@
 
 int main()
 {
-    int arr[10] = {14, 16, 8, 10, 7, 9, 2, 3, 1, 4};
+    int arr[10] = {14, 10, 16, 8, 7, 9, 3, 4, 1, 2};
     heap *hp = buildMaxHeap(arr, 10);
 
+    printf("<Build Max Heap> \n");
     printHeap(hp);
+
+    printf("\n");
+
+    // printf("<Heap Sort> \n");
+    // printf("Before Sort: \n");
+    // printHeap(hp);
+    // heapSort(hp);
+    // printf("After Sort: \n");
+    // printHeap(hp);
+
+    // printf("\n");
+
+    // printf("<Find Max> \n");
+    // findMax(hp);
+
+    // printf("<Extract Max> \n");
+    // int max = extractMax(hp);
+    // printf("Max element : %d \n", max);
+    // printHeap(hp);
+    // printf("Size : %d \n", hp->size);
 
     free(hp);
 }

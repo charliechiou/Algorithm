@@ -14,9 +14,10 @@ typedef struct Heap heap;
 heap *buildMaxHeap(int *nums, int capacity);
 void maxHeapify(heap *h, int i);
 void printHeap(heap *h);
+void heapSort(heap *h);
 
 int findMax(heap *h);
-int extractMax(heap *h, int capacity);
+int extractMax(heap *h);
 void increaseKey(heap *h, int i, int key);
 void insertHeap(heap *h, int key, int capacity);
 
@@ -72,7 +73,7 @@ void maxHeapify(heap *h, int i)
         largest = i;
     }
 
-    if (r < h->size && h->arr[r] > h->arr[i])
+    if (r < h->size && h->arr[r] > h->arr[largest])
     {
         largest = r;
     }
@@ -82,7 +83,6 @@ void maxHeapify(heap *h, int i)
         int temp = h->arr[largest];
         h->arr[largest] = h->arr[i];
         h->arr[i] = temp;
-
         maxHeapify(h, largest);
     }
 }
@@ -94,4 +94,44 @@ void printHeap(heap *h)
         printf("%d ", h->arr[i]);
     }
     printf("\n");
+}
+
+void heapSort(heap *h)
+{
+    int i;
+    int temp;
+    int h_size_temp = h->size;
+    for (i = h->size - 1; i >= 0; i--)
+    {
+        temp = h->arr[0];
+        h->arr[0] = h->arr[i];
+        h->arr[i] = temp;
+        h->size--;
+        maxHeapify(h, 0);
+    }
+    h->size = h_size_temp;
+}
+
+int findMax(heap *h)
+{
+    maxHeapify(h, 0);
+    printf("max element : %d \n", h->arr[0]);
+    return h->arr[0];
+}
+
+int extractMax(heap *h)
+{
+    int max;
+
+    if (h->size < 1)
+    {
+        printf("heap overflow!");
+    }
+
+    max = h->arr[0];
+    h->arr[0] = h->arr[h->size - 1];
+    h->size--;
+    maxHeapify(h, 0);
+
+    return max;
 }
