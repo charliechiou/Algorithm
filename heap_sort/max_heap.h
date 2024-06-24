@@ -19,7 +19,7 @@ void heapSort(heap *h);
 int findMax(heap *h);
 int extractMax(heap *h);
 void increaseKey(heap *h, int i, int key);
-void insertHeap(heap *h, int key, int capacity);
+void insertHeap(heap *h, int key);
 
 heap *buildMaxHeap(int *nums, int capacity)
 {
@@ -127,11 +127,38 @@ int extractMax(heap *h)
     {
         printf("heap overflow!");
     }
+    else
+    {
+        max = h->arr[0];
+        h->arr[0] = h->arr[h->size - 1];
+        h->size--;
+        maxHeapify(h, 0);
+        return max;
+    }
+}
 
-    max = h->arr[0];
-    h->arr[0] = h->arr[h->size - 1];
-    h->size--;
-    maxHeapify(h, 0);
+void increaseKey(heap *h, int i, int key)
+{
+    if (h->arr[i] > key)
+    {
+        printf("New key is smaller than the current key!");
+    }
+    else
+    {
+        h->arr[i] = key;
+        while (i > 0 && h->arr[i / 2] < h->arr[i])
+        {
+            int temp = h->arr[i];
+            h->arr[i] = h->arr[i / 2];
+            h->arr[i / 2] = temp;
+            i = i / 2;
+        }
+    }
+}
 
-    return max;
+void insertHeap(heap *h, int key)
+{
+    h->size++;
+    h->arr[h->size - 1] = -10 ^ 7;
+    increaseKey(h, h->size - 1, key);
 }

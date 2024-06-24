@@ -13,12 +13,12 @@ int main()
 
     printf("\n");
 
-    // printf("<Heap Sort> \n");
-    // printf("Before Sort: \n");
-    // printHeap(hp);
-    // heapSort(hp);
-    // printf("After Sort: \n");
-    // printHeap(hp);
+    printf("<Heap Sort> \n");
+    printf("Before Sort: \n");
+    printHeap(hp);
+    heapSort(hp);
+    printf("After Sort: \n");
+    printHeap(hp);
 
     // printf("\n");
 
@@ -30,6 +30,14 @@ int main()
     // printf("Max element : %d \n", max);
     // printHeap(hp);
     // printf("Size : %d \n", hp->size);
+
+    // printf("<Increase Key> \n");
+    // increaseKey(hp, 3, 11);
+    // printHeap(hp);
+
+    // printf("<Inserting Key> \n");
+    // insertHeap(hp, 11);
+    // printHeap(hp);
 
     free(hp);
 }
