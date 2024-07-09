@@ -3,7 +3,6 @@
 
 void counting_sort(int arr[], int n, int k)
 {
-    printf("start\n");
     int *c;
     c = (int *)malloc(sizeof(int) * (k + 1));
 
